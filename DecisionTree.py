@@ -6,6 +6,7 @@ Created on Thu Sep  6 23:14:59 2018
 @author: childrenbody
 """
 import pandas as pd
+import numpy as np
 
 class Tree:
     '''用于保存决策数信息的二叉树'''
@@ -84,7 +85,6 @@ def predict(tree, data):
                     flag = True
     return res
 
-import numpy as np
 
 file_path = 'mushrooms_new.csv'
 data = pd.read_csv(file_path)
@@ -101,14 +101,3 @@ test = data.iloc[random[train_size:], :]
 tree = create_tree(train, label)
 result = predict(tree, test[feature])
 print('CART accuracy: {}'.format(sum(test[label] == result)/len(result)))
-
-
-
-# =============================================================================
-# cols = ['class', 'cap-shape', 'cap-surface', 'cap-color', 'bruises', 'odor',
-#        'gill-attachment', 'gill-spacing', 'gill-size', 'gill-color',
-#        'stalk-shape', 'stalk-root', 'stalk-surface-above-ring',
-#        'stalk-surface-below-ring', 'stalk-color-above-ring',
-#        'stalk-color-below-ring', 'veil-type', 'veil-color', 'ring-number',
-#        'ring-type', 'spore-print-color', 'population', 'habitat']
-# =============================================================================
