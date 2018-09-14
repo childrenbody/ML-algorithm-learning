@@ -39,7 +39,7 @@ def create_gini_dict(data, label):
 # 选择基尼指数最小的特征及其切分点，从现节点分成两个子节点
 # 将样本集合分配到两个子节点中去，递归调用该函数直到无特征可划分
 def create_tree(data, label):
-
+    # 如果无特征可分，则取数量最多的类别
     if data.shape[1] < 2:
         return data[label].value_counts().idxmax()        
     node_gini = create_gini_dict(data, label)
@@ -54,6 +54,7 @@ def create_tree(data, label):
         else:
             node.yes = create_tree(yes, label)
     else:
+        # 如果该特征在这个分支下没有样本点，则取数量最多的类别作为叶子节点
         node.yes = data[label].value_counts().idxmax()        
     if not no.empty:
         if no[label].nunique() == 1:
