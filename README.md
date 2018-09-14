@@ -44,12 +44,15 @@ CART假设决策树是二叉树，内部结点特征的取值为“是”和“�
 
 根据训练数据集，从根节点开始，递归地对每个节点进行一下操作，构建二叉决策树：
 
-+ （1）设节点的训练数据集为*D*，计算现有特征对该数据集的基尼指数。此时，对每一个特征*A*，对其可能取的每个值*a*，根据样本点对*A=a*的测试为“是”或“否”将*D*分割成<a href="https://www.codecogs.com/eqnedit.php?latex=D_1" target="_blank"><img src="https://latex.codecogs.com/png.latex?D_1" title="D_1" /></a>和<a href="https://www.codecogs.com/eqnedit.php?latex=D_2" target="_blank"><img src="https://latex.codecogs.com/png.latex?D_2" title="D_2" /></a>两部分，利用
+（1）设节点的训练数据集为*D*，计算现有特征对该数据集的基尼指数。此时，对每一个特征*A*，对其可能取的每个值*a*，根据样本点对*A=a*的测试为“是”或“否”将*D*分割成<a href="https://www.codecogs.com/eqnedit.php?latex=D_1" target="_blank"><img src="https://latex.codecogs.com/png.latex?D_1" title="D_1" /></a>和<a href="https://www.codecogs.com/eqnedit.php?latex=D_2" target="_blank"><img src="https://latex.codecogs.com/png.latex?D_2" title="D_2" /></a>两部分，利用
 <p align="center"><a href="https://www.codecogs.com/eqnedit.php?latex=Gini(D,A)=\frac{|D_1|}{|D|}Gini(D_1)&plus;\frac{|D_2|}{|D|}Gini(D_2)" target="_blank"><img src="https://latex.codecogs.com/png.latex?Gini(D,A)=\frac{|D_1|}{|D|}Gini(D_1)&plus;\frac{|D_2|}{|D|}Gini(D_2)" title="Gini(D,A)=\frac{|D_1|}{|D|}Gini(D_1)+\frac{|D_2|}{|D|}Gini(D_2)" /></a></p>
 计算*A=a*时的基尼指数.
-+ （2）在所有可能的特征*A*以及它们所有可能的切分点*a*中，选择基尼指数最小的特征及其对应的切分点作为最优特征与最优切分点，从现节点生成两个子节点，将训练数据集依特征分配到两个子节点中去。
-+ （3）对两个子节点递归调用（1），（2），直至满足停止条件。
-+ （4）生成CART决策树
+
+（2）在所有可能的特征*A*以及它们所有可能的切分点*a*中，选择基尼指数最小的特征及其对应的切分点作为最优特征与最优切分点，从现节点生成两个子节点，将训练数据集依特征分配到两个子节点中去。
+
+（3）对两个子节点递归调用（1），（2），直至满足停止条件。
+
+（4）生成CART决策树
 
 算法停止计算的条件是结点中的样本个数小于预定阈值，或样本集的基尼指数小于预定阈值（样本基本属于同一类），或者没有更多的特征。
 
